@@ -89,4 +89,5 @@ module.exports = {
   getAllWorkouts,
   getWorkout,
   deleteWorkout,
+  updateWorkout,
 };
