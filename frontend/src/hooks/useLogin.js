@@ -31,6 +31,8 @@ export const useLogin = () => {
       localStorage.setItem("user", JSON.stringify(json));
       dispatch({ type: "LOGIN", payload: json });
       setLoading(false);
+      // redirect to home page
+      window.location.href = "/";
     }
   };
   return { login, loading, error };
