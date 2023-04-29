@@ -6,10 +6,12 @@ const workoutRouter = require("./routes/workouts");
 const userRoutes = require("./routes/user");
 // express app
 const app = express();
+const morgan = require("morgan");
 
 // middleware
 // used to parse the body of the request
 app.use(express.json());
+app.use(morgan("combined"));
 // used to parse the url
 app.use((req, res, next) => {
   console.log(req.path, req.method);
