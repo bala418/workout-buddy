@@ -12,6 +12,12 @@ const morgan = require("morgan");
 // used to parse the body of the request
 app.use(express.json());
 app.use(morgan("combined"));
+
+// display a html file when the root path is hit
+app.get("/", (req, res) => {
+  res.sendFile("./views/index.html", { root: __dirname });
+});
+
 // used to parse the url
 app.use((req, res, next) => {
   console.log(req.path, req.method);
