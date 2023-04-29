@@ -1,7 +1,7 @@
 require("dotenv").config();
 const express = require("express");
 const mongoose = require("mongoose");
-
+const cors = require("cors");
 const workoutRouter = require("./routes/workouts");
 const userRoutes = require("./routes/user");
 // express app
@@ -12,7 +12,7 @@ const morgan = require("morgan");
 // used to parse the body of the request
 app.use(express.json());
 app.use(morgan("combined"));
-
+app.use(cors());
 // display a html file when the root path is hit
 app.get("/", (req, res) => {
   res.sendFile("./views/index.html", { root: __dirname });
@@ -21,6 +21,11 @@ app.get("/", (req, res) => {
 // used to parse the url
 app.use((req, res, next) => {
   console.log(req.path, req.method);
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header(
+    "Access-Control-Allow-Headers",
+    "Origin, X-Requested-With, Content-Type, Accept"
+  );
   next();
 });
 
